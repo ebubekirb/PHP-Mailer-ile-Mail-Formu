@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+error_reporting(E_ERROR);
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -19,7 +20,7 @@ if (isset($_POST)) {
 		try {
 
 			//Server Ayarları
-			$mail->SMTPDebug 	= 2;
+			$mail->SMTPDebug 	= 0;
 			$mail->isSMTP();
 			$mail->Host 		= "ssl://smtp.gmail.com";
 			$mail->SMTPAuth 	= true;
@@ -32,6 +33,7 @@ if (isset($_POST)) {
 			//Alıcı Ayarları
 			$mail->setFrom("ebubekr385@gmail.com", $_POST["sender"]);
 			$mail->addAddress($_POST["to_email"], "");
+			$mail->addAttachment("files/slide01.jpg");
 			// $mail->addBCC("", "");
 			// $mail->addBCC("", "");
 
