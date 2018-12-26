@@ -15,7 +15,11 @@ if (isset($_POST)) {
 		
 		// Mail gönderme işlemini gerçekleştir..
 
-		$mail = new PHPMailer(true);
+		$file = $_FILES["attachment"];
+
+		if (move_uploaded_file($file["tmp_name"], "files/" .$file["name"])) {
+			
+			$mail = new PHPMailer(true);
 
 		try {
 
@@ -33,7 +37,7 @@ if (isset($_POST)) {
 			//Alıcı Ayarları
 			$mail->setFrom("ebubekr385@gmail.com", $_POST["sender"]);
 			$mail->addAddress($_POST["to_email"], "");
-			$mail->addAttachment("files/slide01.jpg");
+			$mail->addAttachment("files/" .$file["name"]);
 			// $mail->addBCC("", "");
 			// $mail->addBCC("", "");
 
@@ -68,6 +72,20 @@ if (isset($_POST)) {
 			);
 		}
 
+
+
+		} else {
+			
+			$alert = array(
+
+			"message" 	=> "Lütfen tüm alanları doldurunuz!",
+			"type" 		=> "danger"
+			);
+
+		}
+		
+
+		
 	}
 
 	else{

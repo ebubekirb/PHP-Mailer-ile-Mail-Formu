@@ -25,7 +25,7 @@ session_start();
 
 						<?php unset($_SESSION["alert"]); ?>
 				<?php } ?>
-				<form action="send_email.php" method="post">
+				<form action="send_email.php" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Gönderilecek Adres</label>
 						<input class="form-control" type="email"  name="to_email">
@@ -40,7 +40,11 @@ session_start();
 					</div>
 					<div class="form-group">
 						<label>Mesaj</label>
-						<textarea name="message" class="form-control" required="" cols="30" rows="8"></textarea>
+						<textarea name="message" class="form-control" required="" cols="30" rows="5"></textarea>
+					</div>
+					<div class="form-group">
+						<label>Dosya Eki</label>
+						<input class="form-control-file" type="file" name="attachment">
 					</div>
 					<div align="right" class="col-md-12">
 						<button type="submit" class="btn btn-outline-primary">Gönder</button>
